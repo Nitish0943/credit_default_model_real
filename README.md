@@ -27,3 +27,28 @@ Troubleshooting:
 - If Streamlit complains about CORS or port, the `--server.enableCORS false` and `$PORT` in the start command should resolve common issues.
 
 Enjoy! 🚀
+
+## Short report
+
+### Problem
+
+Predicting credit card payment default is important for banks and lenders to manage risk and allocate capital. The goal of this project is to provide a lightweight, user-facing tool that predicts whether a customer will default on their next payment using historical billing and payment features.
+
+### Approach
+
+We trained a supervised classification model on the UCI Credit Card dataset. The application loads a pre-trained model (`credit_default_model.pkl`) and exposes a Streamlit interface (`app.py`) to collect a few key features (limit balance, demographics, recent bill and payment amounts, and payment status) and produce a default probability and binary prediction.
+
+### Results
+
+The app returns a probability score and a binary decision (likely to default / not likely to default). Model performance on validation data achieved reasonable discrimination (see `EDA.ipynb` for metrics and visualizations). Exact metrics (AUC, precision, recall) are available in the EDA notebook and model training artifacts.
+
+### Discussion
+
+This Streamlit app is a demo for model consumption and quick exploration. For production use, consider the following improvements:
+
+- Host the model artifact outside the git repository (object storage) if it is large.
+- Add input validation and user authentication for the web interface.
+- Implement model monitoring and periodic re-training to handle data drift.
+- Expand features and perform robust cross-validation and calibration for more reliable probability estimates.
+
+These changes make the tool safer and more reliable for real-world deployment.
